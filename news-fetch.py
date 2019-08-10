@@ -44,7 +44,7 @@ if OUTPUT_TO_FILE:
     PATH = os.path.abspath(FILENAME).replace(FILENAME,'')
     F = open(PATH+FILENAME,'w')
 
-# Date of day from one week ago in appropriate format
+# Date of day from one week ago in appropriate ISO-ish format
 LAST_PERIOD = (datetime.now() - timedelta(BACK_DAYS)).strftime('%Y-%m-%d')
 
 # Getting response from News API
@@ -57,7 +57,7 @@ NUM_ARTICLES = str(len(ARTICLE_LIST))
 outStr = QUERY.upper() + ' NEWS FROM ' + LAST_PERIOD + ' TO TODAY (' + NUM_ARTICLES + ' articles)\n\n'
 
 itemCount = 0
-while itemCount < len(ARTICLE_LIST) and itemCount < MAX_RESULTS: # Change 25 to whatever max no. of articles needed
+while itemCount < len(ARTICLE_LIST) and itemCount < MAX_RESULTS:
     currArticle = ARTICLE_LIST[itemCount]
     currArticleTitle = currArticle["title"]
     currArticleURL = currArticle["url"]
